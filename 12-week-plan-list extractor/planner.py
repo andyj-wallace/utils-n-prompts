@@ -12,6 +12,9 @@ SAVES_DIR = Path(__file__).parent / "saved_plans"
 MIN_WEEK = 1
 MAX_WEEK = 12
 
+# How many weekly sections the PDF packs onto one page.
+WEEKS_PER_PAGE = 3
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -250,9 +253,30 @@ def generate_pdf(start_date: date, goals: list[dict], output_path: str) -> None:
     pdf.set_auto_page_break(auto=True, margin=15)
     MARGIN = 15
     PAGE_WIDTH = 210 - 2 * MARGIN  # A4 usable width in mm
+    PAGE_BOTTOM = 297 - MARGIN     # A4 height in mm, less the bottom margin
+
+    weeks_on_page = 0
 
     for week_num in range(1, 13):
-        pdf.add_page()
+        active = [(g["name"], active_tactics(g, week_num)) for g in goals]
+        active = [(name, tactics) for name, tactics in active if tactics]
+
+        # Header (7 + 12 + 3) plus each goal's header, tactic lines, and gap.
+        block_height = 22 + sum(9 + 7 * len(t) + 2 for _, t in active)
+
+        if (pdf.page_no() == 0
+                or weeks_on_page == WEEKS_PER_PAGE
+                or pdf.get_y() + block_height > PAGE_BOTTOM):
+            pdf.add_page()
+            weeks_on_page = 0
+        elif weeks_on_page:
+            rule_y = pdf.get_y() + 3
+            pdf.set_draw_color(180, 180, 180)
+            pdf.line(MARGIN, rule_y, MARGIN + PAGE_WIDTH, rule_y)
+            pdf.set_draw_color(0, 0, 0)
+            pdf.set_y(rule_y + 5)
+
+        weeks_on_page += 1
         ws, we = week_date_range(start_date, week_num)
 
         # Date range line
@@ -268,16 +292,12 @@ def generate_pdf(start_date: date, goals: list[dict], output_path: str) -> None:
                  new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         pdf.ln(3)
 
-        for goal in goals:
-            tactics = active_tactics(goal, week_num)
-            if not tactics:
-                continue
-
+        for name, tactics in active:
             # Goal header cell
             pdf.set_font("Helvetica", "B", size=12)
             pdf.set_fill_color(255, 255, 255)
             pdf.set_x(MARGIN)
-            pdf.cell(PAGE_WIDTH, 9, goal["name"], border=1, fill=True,
+            pdf.cell(PAGE_WIDTH, 9, name, border=1, fill=True,
                      new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
             # Tactics cell

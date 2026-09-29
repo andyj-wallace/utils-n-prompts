@@ -1,0 +1,121 @@
+{
+  "start_date": "2026-09-20",
+  "goals": [
+    {
+      "name": "Network+",
+      "tactics": [
+        {
+          "description": "Study 5+ Hours",
+          "recurring": true,
+          "begin_week": 1,
+          "end_week": 5
+        },
+        {
+          "description": "Practice Exams",
+          "recurring": true,
+          "begin_week": 1,
+          "end_week": 3
+        },
+        {
+          "description": "Videos and Local HTML page summaries",
+          "recurring": true,
+          "begin_week": 4,
+          "end_week": 5
+        },
+        {
+          "description": "Exam",
+          "recurring": false,
+          "due_week": 6
+        },
+        {
+          "description": "Recap Study",
+          "recurring": false,
+          "due_week": 6
+        }
+      ]
+    },
+    {
+      "name": "Passport",
+      "tactics": [
+        {
+          "description": "Passport Renewal (US)",
+          "recurring": false,
+          "due_week": 2
+        },
+        {
+          "description": "Buy Nightstand/Small table to hold items",
+          "recurring": false,
+          "due_week": 11
+        }
+      ]
+    },
+    {
+      "name": "Get new clothes",
+      "tactics": [
+        {
+          "description": "Buy ligs",
+          "recurring": false,
+          "due_week": 3
+        },
+        {
+          "description": "Buy plain T Shirts",
+          "recurring": false,
+          "due_week": 4
+        },
+        {
+          "description": "Buy Overcoat/Jacket",
+          "recurring": false,
+          "due_week": 4
+        }
+      ]
+    },
+    {
+      "name": "Security+",
+      "tactics": [
+        {
+          "description": "Study 5+ Hours",
+          "recurring": true,
+          "begin_week": 7,
+          "end_week": 11
+        },
+        {
+          "description": "Practice Exams",
+          "recurring": true,
+          "begin_week": 7,
+          "end_week": 11
+        },
+        {
+          "description": "Videos + HTML page summaries",
+          "recurring": true,
+          "begin_week": 10,
+          "end_week": 11
+        },
+        {
+          "description": "Final Exam",
+          "recurring": false,
+          "due_week": 12
+        },
+        {
+          "description": "Study Recap",
+          "recurring": false,
+          "due_week": 12
+        }
+      ]
+    },
+    {
+      "name": "Kriaten Bday",
+      "tactics": [
+        {
+          "description": "Small Gift",
+          "recurring": false,
+          "due_week": 7
+        },
+        {
+          "description": "Get iphone",
+          "recurring": false,
+          "due_week": 9
+        }
+      ]
+    }
+  ]
+}
