@@ -103,7 +103,7 @@
       ]
     },
     {
-      "name": "Kriaten Bday",
+      "name": "Kristen Bday",
       "tactics": [
         {
           "description": "Small Gift",
@@ -111,7 +111,7 @@
           "due_week": 7
         },
         {
-          "description": "Get iphone",
+          "description": "New iphone pro max",
           "recurring": false,
           "due_week": 9
         }
